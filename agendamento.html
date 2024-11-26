@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<head>
+    <html lang="pt-br">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    
+    <title>Navalha's Barbearia</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> <!--Font  txt-->
+</head>
+
+<body>
+    <header>
+        <div id="box">
+            <nav>
+                <h1><img src="imgs/nvlogo.png" alt="logo of Barber Shop"></h1>
+
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="agendamento.html">Agende um horário</a></li>
+                    <li><a href="product.html">Produtos</a></li>
+                </ul>
+            </nav>    
+        </div>
+    </header>
+    <main>
+        <img src="imgs/on.jpg", id="banner" alt="header with itens of barber">
+
+
+    <div class="video">
+      <iframe width="100%" height="1250" src="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1ddVQ2i0evcVkruozAFhqQIftJfXqaQ9JvS4yqfnApUJgBJXCjAeCB1HRYnmEhOJkIvbEOPh2c?gv=true" frameborder="0" 
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    document.getElementById('agendamentoForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const dataHora = document.getElementById('dataHora').value;
+
+      const agendamento = { nome, email, dataHora };
+
+      const response = await fetch('http://localhost:5000/agendamentos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(agendamento),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert('Agendamento realizado com sucesso!');
+      } else {
+        alert('Erro ao agendar horário');
+      }
+    });
+  </script>
+</body>
+</html>
+
+<footer>
+    <img src="imgs/novalogo.png" alt="logo of Barber Shop">
+    <p class="copyright">&copy; Copyright: Luiz Gabryel de Freitas Parreira. 2024</p> <!--&copy icon of (unicode)-->
+</footer>
+
+</body>
+</html>
